@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meu Pedido - Raízes do Nordeste</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Raízes do Nordeste</h1>
+
+        <button onclick="window.location.href='cardapio.html'">
+            Voltar ao cardápio
+        </button>
+    </header>
+
+    <main>
+
+        <section class="pedido">
+
+            <h2>Meu Pedido</h2>
+
+            <div id="listaPedido">
+                Carregando pedido...
+            </div>
+
+            <div id="totalPedido"></div>
+
+            <button id="btnFinalizar">
+                Finalizar pedido
+            </button>
+
+        </section>
+
+    </main>
+
+    <script>
+
+        // ========================================
+        // CARREGAR PEDIDO
+        // ========================================
+
+        const listaPedido =
+            document.getElementById("listaPedido");
+
+        const totalPedido =
+            document.getElementById("totalPedido");
+
+        let pedido =
+            JSON.parse(
+                localStorage.getItem("pedidoAtual")
+            ) || [];
+
+
+        function atualizarPedido() {
+
+            listaPedido.innerHTML = "";
+
+            let total = 0;
+
+
+            if (pedido.length === 0) {
+
+                listaPedido.innerHTML =
+                    "<p>Seu pedido está vazio.</p>";
+
+                totalPedido.innerHTML = "";
+
+                return;
+            }
+
+
+            pedido.forEach((item, indice) => {
+
+                const subtotal =
+                    item.preco * item.quantidade;
+
+                total += subtotal;
+
+
+                const produtoPedido =
+                    document.createElement("div");
+
+                produtoPedido.classList.add(
+                    "item-pedido"
+                );
+
+
+                produtoPedido.innerHTML = `
+                    <h3>${item.nome}</h3>
+
+                    <div class="controle-quantidade">
+
+                        <button
+                            class="btn-menos"
+                            data-indice="${indice}">
+                            −
+                        </button>
+
+                        <span>
+                            ${item.quantidade}
+                        </span>
+
+                        <button
+                            class="btn-mais"
+                            data-indice="${indice}">
+                            +
+                        </button>
+
+                    </div>
+
+                    <p>
+                        R$ ${subtotal
+                            .toFixed(2)
+                            .replace(".", ",")}
+                    </p>
+                `;
+
+
+                listaPedido.appendChild(
+                    produtoPedido
+                );
+
+            });
+
+
+            totalPedido.innerHTML = `
+                <h3>
+                    Total:
+                    R$ ${total
+                        .toFixed(2)
+                        .replace(".", ",")}
+                </h3>
+            `;
+
+
+            // ========================================
+            // BOTÃO DIMINUIR
+            // ========================================
+
+            document
+                .querySelectorAll(".btn-menos")
+                .forEach(botao => {
+
+                    botao.addEventListener(
+                        "click",
+                        function () {
+
+                            const indice =
+                                Number(
+                                    this.dataset.indice
+                                );
+
+                            if (
+                                pedido[indice].quantidade > 1
+                            ) {
+
+                                pedido[indice].quantidade--;
+
+                            } else {
+
+                                pedido.splice(indice, 1);
+                            }
+
+
+                            localStorage.setItem(
+                                "pedidoAtual",
+                                JSON.stringify(pedido)
+                            );
+
+
+                            atualizarPedido();
+
+                        }
+                    );
+
+                });
+
+
+            // ========================================
+            // BOTÃO AUMENTAR
+            // ========================================
+
+            document
+                .querySelectorAll(".btn-mais")
+                .forEach(botao => {
+
+                    botao.addEventListener(
+                        "click",
+                        function () {
+
+                            const indice =
+                                Number(
+                                    this.dataset.indice
+                                );
+
+
+                            pedido[indice].quantidade++;
+
+
+                            localStorage.setItem(
+                                "pedidoAtual",
+                                JSON.stringify(pedido)
+                            );
+
+
+                            atualizarPedido();
+
+                        }
+                    );
+
+                });
+
+        }
+
+
+        // ========================================
+        // PRIMEIRO CARREGAMENTO
+        // ========================================
+
+        atualizarPedido();
+
+
+        // ========================================
+        // FINALIZAR PEDIDO
+        // ========================================
+
+        const btnFinalizar =
+            document.getElementById("btnFinalizar");
+
+
+        btnFinalizar.addEventListener(
+            "click",
+            function () {
+
+                if (pedido.length === 0) {
+
+                    alert(
+                        "Adicione pelo menos um produto ao pedido."
+                    );
+
+                    return;
+                }
+
+
+                alert(
+                    "Pedido finalizado com sucesso!"
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

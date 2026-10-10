@@ -1,0 +1,12 @@
+Essa vai ser sua pasta "estrela".
+
+Vamos colocar:
+
+Plano de Testes
+Casos de Teste
+Evidências
+Bugs encontrados
+Matriz de Rastreabilidade
+Critérios de Aceitação
+
+Isso vai destacar seu projeto, já que sua trilha é Qualidade de Software.

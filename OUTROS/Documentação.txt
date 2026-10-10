@@ -1,0 +1,29 @@
+PB001
+
+Como cliente
+
+Quero visualizar a tela inicial com a identidade da empresa
+
+Para conhecer a marca e iniciar meu pedido rapidamente.
+
+PB002
+
+Como cliente
+
+Quero criar uma conta
+
+Para realizar pedidos e acompanhar meu histórico.
+
+PB003
+
+Como cliente
+
+Quero fazer login
+
+Para acessar minhas informações e pedidos.
+
+Percebe?
+
+Isso muda completamente a forma de pensar.
+
+Você deixa de pensar em "telas" e passa a pensar nas necessidades do usuário.

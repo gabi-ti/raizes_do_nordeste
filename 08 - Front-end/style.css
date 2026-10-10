@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f5ef;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Cabeçalho */
+
+header {
+    width: 100%;
+    padding: 20px 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+/* Botões */
+
+button {
+    border: none;
+    border-radius: 8px;
+    padding: 12px 22px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+/* Botão Entrar */
+
+#btnEntrar {
+    background-color: #ffffff;
+    border: 1px solid #333;
+}
+
+/* Área principal */
+
+main {
+    width: 100%;
+}
+
+.hero {
+    min-height: calc(100vh - 80px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero h2 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+#btnPedido {
+    background-color: #333;
+    color: #ffffff;
+}
+
+/* Responsividade */
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 15px 20px;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    header button {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    .hero h2 {
+        font-size: 30px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    #btnPedido {
+        width: 100%;
+        max-width: 300px;
+    }
+
+
+    /* Tela de escolha da unidade */
+
+.unidades {
+    min-height: calc(100vh - 80px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.unidades h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.unidades p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+#listaUnidades {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+    .unidade {
+        min-width: 220px;
+        padding: 20px;
+
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+
+        cursor: pointer;
+
+        font-size: 18px;
+        font-weight: bold;
+}
+
+    .unidade:hover {
+        transform: translateY(-2px);
+    
+    /* Cards do cardápio */
+
+.cardapio {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cardapio h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+#unidadeEscolhida {
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 18px;
+}
+
+#listaProdutos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.produto {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
+.produto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.produto h3 {
+    font-size: 20px;
+    margin: 15px 15px 8px;
+}
+
+.produto p {
+    font-size: 15px;
+    margin: 0 15px 12px;
+    line-height: 1.4;
+}
+
+.produto strong {
+    display: block;
+    margin: 0 15px 15px;
+    font-size: 18px;
+}
+
+.btn-adicionar {
+    width: calc(100% - 30px);
+    margin: 0 15px;
+    background-color: #333;
+    color: #ffffff;
+}
+
+.indisponivel {
+    display: block;
+    width: calc(100% - 30px);
+    margin: 0 15px;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #999;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* Responsividade do cardápio */
+
+@media (max-width: 800px) {
+
+    #listaProdutos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 550px) {
+
+    .cardapio {
+        padding: 20px;
+    }
+
+    #listaProdutos {
+        grid-template-columns: 1fr;
+    }
+
+}
+}
+}

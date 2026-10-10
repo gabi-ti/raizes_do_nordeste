@@ -1,0 +1,39 @@
+Sprint 1
+
+✅ Product Backlog
+
+✅ Definição do MVP
+
+✅ Personas
+
+✅ Jornada do Usuário
+
+Sprint 2
+
+✅ Requisitos Funcionais
+
+✅ Requisitos Não Funcionais
+
+Sprint 3
+
+✅ Wireframes
+
+Sprint 4
+
+✅ Banco de Dados
+
+Sprint 5
+
+✅ API
+
+Sprint 6
+
+✅ Front-end
+
+Sprint 7
+
+✅ Testes QA
+
+Sprint 8
+
+✅ Documentação Final

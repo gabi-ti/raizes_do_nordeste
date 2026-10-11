@@ -228,36 +228,201 @@
 
 
         // ========================================
-        // FINALIZAR PEDIDO
-        // ========================================
+// FINALIZAR PEDIDO
+// ========================================
 
-        const btnFinalizar =
-            document.getElementById("btnFinalizar");
-
-
-        btnFinalizar.addEventListener(
-            "click",
-            function () {
-
-                if (pedido.length === 0) {
-
-                    alert(
-                        "Adicione pelo menos um produto ao pedido."
-                    );
-
-                    return;
-                }
+const btnFinalizar =
+    document.getElementById("btnFinalizar");
 
 
-                alert(
-                    "Pedido finalizado com sucesso!"
+btnFinalizar.addEventListener(
+    "click",
+    async function () {
+
+        if (pedido.length === 0) {
+
+            alert(
+                "Adicione pelo menos um produto ao pedido."
+            );
+
+            return;
+        }
+
+        // Recupera a unidade selecionada
+
+        const unidadeSalva =
+            localStorage.getItem("unidadeSelecionada");
+
+        if (!unidadeSalva) {
+
+            alert(
+                "Nenhuma unidade foi selecionada."
+            );
+
+            return;
+        }
+
+        const unidade =
+            JSON.parse(unidadeSalva);
+
+
+        // Calcula o valor total
+
+        let total = 0;
+
+        pedido.forEach(item => {
+
+            total +=
+                item.preco * item.quantidade;
+
+        });
+
+
+        try {
+
+            // ========================================
+            // CRIAR PEDIDO
+            // ========================================
+
+            const respostaPedido =
+                await fetch(
+                    "http://127.0.0.1:5000/pedido",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            id_usuario: 1,
+
+                            id_unidade:
+                                unidade.id,
+
+                            status:
+                                "Em aberto",
+
+                            valor_total:
+                                total
+
+                        })
+                    }
+                );
+
+
+            const resultadoPedido =
+                await respostaPedido.json();
+
+
+            if (!respostaPedido.ok) {
+
+                throw new Error(
+                    resultadoPedido.erro ||
+                    "Erro ao criar o pedido."
                 );
 
             }
-        );
 
+
+            const idPedido =
+                resultadoPedido.id_pedido;
+
+
+            // ========================================
+            // CRIAR ITENS DO PEDIDO
+            // ========================================
+
+            for (const item of pedido) {
+
+                const respostaItem =
+                    await fetch(
+                        "http://127.0.0.1:5000/item-pedido",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                id_pedido:
+                                    idPedido,
+
+                                id_produto:
+                                    item.id,
+
+                                quantidade:
+                                    item.quantidade,
+
+                                preco_unitario:
+                                    item.preco
+
+                            })
+                        }
+                    );
+
+
+                const resultadoItem =
+                    await respostaItem.json();
+
+
+                if (!respostaItem.ok) {
+
+                    throw new Error(
+                        resultadoItem.erro ||
+                        "Erro ao adicionar item ao pedido."
+                    );
+
+                }
+
+            }
+
+
+            // ========================================
+            // PEDIDO FINALIZADO
+            // ========================================
+
+            alert(
+                "Pedido finalizado com sucesso!"
+            );
+
+
+            // Limpa o pedido atual
+
+            localStorage.removeItem(
+                "pedidoAtual"
+            );
+
+
+            // Volta para a página inicial
+
+            window.location.href =
+                "index.html";
+
+
+        } catch (erro) {
+
+            console.error(
+                "Erro ao finalizar pedido:",
+                erro
+            );
+
+            alert(
+                "Não foi possível finalizar o pedido. " +
+                erro.message
+            );
+
+        }
+
+    }
+);
     </script>
 
 </body>
 
-</html>
+</html>       

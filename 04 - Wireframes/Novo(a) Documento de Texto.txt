@@ -1,7 +1,0 @@
-Tela Inicial.fig
-
-Login.fig
-
-Cadastro.fig
-
-Carrinho.fig

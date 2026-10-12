@@ -7,6 +7,13 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f5ef;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78)),
+        url("Imagens_Cardapio/Produtos/Imagem\ empresa.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     color: #333;
     min-height: 100vh;
 }
@@ -15,12 +22,10 @@ body {
 
 header {
     width: 100%;
-    padding: 20px 40px;
-
+    padding: 20px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     background-color: #ffffff;
     border-bottom: 1px solid #ddd;
 }
@@ -35,21 +40,17 @@ button {
     border: none;
     border-radius: 8px;
     padding: 12px 22px;
-
     font-size: 16px;
     font-weight: bold;
-
     cursor: pointer;
 }
-
-/* Botão Entrar */
 
 #btnEntrar {
     background-color: #ffffff;
     border: 1px solid #333;
 }
 
-/* Área principal */
+/* Tela inicial */
 
 main {
     width: 100%;
@@ -57,14 +58,21 @@ main {
 
 .hero {
     min-height: calc(100vh - 80px);
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     text-align: center;
-    padding: 40px 20px;
+    padding: 60px 5%;
+    
+    /* Imagem de fundo */
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+        url("Imagens_Cardapio/Produtos/Imagem empresa.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ffffff;
 }
 
 .hero h2 {
@@ -82,49 +90,16 @@ main {
     color: #ffffff;
 }
 
-/* Responsividade */
-
-@media (max-width: 600px) {
-
-    header {
-        padding: 15px 20px;
-    }
-
-    header h1 {
-        font-size: 20px;
-    }
-
-    header button {
-        padding: 10px 16px;
-        font-size: 14px;
-    }
-
-    .hero h2 {
-        font-size: 30px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
-    #btnPedido {
-        width: 100%;
-        max-width: 300px;
-    }
-
-
-    /* Tela de escolha da unidade */
+/* Tela de escolha da unidade */
 
 .unidades {
     min-height: calc(100vh - 80px);
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     text-align: center;
-    padding: 40px 20px;
+    padding: 40px 5%;
 }
 
 .unidades h2 {
@@ -144,27 +119,25 @@ main {
     gap: 20px;
 }
 
-    .unidade {
-        min-width: 220px;
-        padding: 20px;
-
-        background-color: #ffffff;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-
-        cursor: pointer;
-
-        font-size: 18px;
-        font-weight: bold;
+.unidade {
+    min-width: 220px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-    .unidade:hover {
-        transform: translateY(-2px);
-    
-    /* Cards do cardápio */
+.unidade:hover {
+    transform: translateY(-2px);
+}
+
+/* Cards do cardápio */
 
 .cardapio {
-    padding: 40px;
+    padding: 40px 5%;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -237,26 +210,98 @@ main {
     font-weight: bold;
 }
 
-/* Responsividade do cardápio */
+/* Responsividade */
 
 @media (max-width: 800px) {
-
     #listaProdutos {
         grid-template-columns: repeat(2, 1fr);
     }
+}
 
+@media (max-width: 600px) {
+    header {
+        padding: 15px 5%;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    header button {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    .hero h2 {
+        font-size: 30px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    #btnPedido {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .unidades h2,
+    .cardapio h2 {
+        font-size: 28px;
+    }
 }
 
 @media (max-width: 550px) {
-
     .cardapio {
-        padding: 20px;
+        padding: 20px 5%;
     }
 
     #listaProdutos {
         grid-template-columns: 1fr;
     }
+    main {
+        padding: 0 20px;
+    }
 
-}
-}
+    .hero,
+    .unidade,
+    .cardapio {
+        width: 100%;
+        max-width: 1200;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media (max-width: 600px) {
+        main {
+            padding: 0 16px;
+        }
+
+        .hero,
+        .unidade {
+            padding: 40px 16px;
+        }
+
+        .cardapio {
+            padding: 24px 0;
+        }
+
+        .pedido {
+            padding: 24px 20px;
+        }
+        
+        .pedido h2,
+        .pedido h3,
+        .pedido p,
+        .pedido button {
+            margin-left: 0;
+        }
+
+        @media (max-width: 600px) {
+            .pedido {
+                padding: 24px 16px;
+            }
+            
+        }
+    }
 }
